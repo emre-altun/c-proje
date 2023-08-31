@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace talept_
+{
+    public partial class Form2 : Form
+    {
+
+        List<Control> donem_controls = new List<Control>();
+        List<Control> gerceklesen_satıs_controls = new List<Control>();
+
+        List<int> donemler = new List<int>();
+        List<int> gerceklesen_satıslar = new List<int>();
+        public Form2()
+        {
+            InitializeComponent();
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int x = 170;
+            int xx = 170;
+            for (int i = 1; i <= int.Parse(comboBox2.Text) * int.Parse(comboBox3.Text); i++)
+            {
+                var control = (new TextBox()
+                {
+                    Location = new Point(40, x)
+                });
+                this.Controls.Add(control);
+                x += 40;
+
+                var control1 = (new TextBox()
+                 {
+                    Location = new Point(205, xx)
+                });
+                this.Controls.Add(control1);
+                xx += 40;
+                donem_controls.Add(control);
+                gerceklesen_satıs_controls.Add(control1);
+                control.Text =i.ToString();
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e )
+        {
+            foreach (Control x in donem_controls)
+            {
+
+                donemler.Add(int.Parse(x.Text));
+
+            }
+
+            foreach (Control x in gerceklesen_satıs_controls)
+            {
+
+                gerceklesen_satıslar.Add(int.Parse(x.Text));
+
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel1.Enabled = true;
+        }
+    }
+}
